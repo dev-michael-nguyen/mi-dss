@@ -1,29 +1,35 @@
 <template>
   <v-app>
-    <v-navigation-drawer
-      app
-      v-model="showDrawer"
-      persistent
-      enable-resize-watcher
-      fixed
+    <v-navigation-drawer app v-model="showDrawer"
+      persistent enable-resize-watcher fixed
       :clipped="clipped"
       :mini-variant="miniVariant">
       <v-list>
-        <v-list-tile
-          value="true"
-          v-for="(item, i) in items"
-          :key="i">
-          <v-list-tile-action>
-            <v-icon v-html="item.icon"></v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title v-text="item.title"></v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
+        <v-list-group v-model="item.active"
+          v-for="item in items"
+          :key="item.title"
+          :prepend-icon="item.action"
+          no-action>
+          <v-list-tile slot="activator">
+            <v-list-tile-content>
+              <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+          <v-list-tile v-for="subItem in item.items"
+            :key="subItem.title"
+            :value="activeTile == subItem.title"
+            @click="activeTile = subItem.title">
+            <v-list-tile-content>
+              <v-list-tile-title>{{ subItem.title }}</v-list-tile-title>
+            </v-list-tile-content>
+            <v-list-tile-action>
+              <v-icon>{{ subItem.action }}</v-icon>
+            </v-list-tile-action>
+          </v-list-tile>
+        </v-list-group>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar
-      app
+    <v-toolbar app
       :clipped-left="clipped">
       <v-toolbar-side-icon @click.stop="showDrawer = !showDrawer"></v-toolbar-side-icon>
       <v-btn icon @click.stop="miniVariant = !miniVariant">
@@ -41,11 +47,8 @@
     <v-content>
       <router-view/>
     </v-content>
-    <!-- <v-navigation-drawer
-      app
-      v-model="showRightDrawer"
-      temporary
-      fixed
+    <v-navigation-drawer app v-model="showRightDrawer"
+      temporary fixed
       :right="right">
       <v-list>
         <v-list-tile @click="right = !right">
@@ -55,12 +58,11 @@
           <v-list-tile-title>Switch drawer (click me)</v-list-tile-title>
         </v-list-tile>
       </v-list>
-    </v-navigation-drawer> -->
-    <!-- <v-footer
-      app
+    </v-navigation-drawer>
+    <v-footer app
       fixed>
       <span>&copy; 2017</span>
-    </v-footer> -->
+    </v-footer>
   </v-app>
 </template>
 
@@ -75,8 +77,23 @@ export default {
       miniVariant: false,
       showRightDrawer: false,
       right: true,
+      activeTile: 0,
       items: [
-        { icon: 'bubble_chart', title: 'Inspire' }
+        {
+          action: 'people',
+          title: 'Profiles',
+          items: [
+            { title: 'Search' }
+          ]
+        },
+        {
+          action: 'list',
+          title: 'My List',
+          items: [
+            { title: 'Module A' },
+            { title: 'Module B' }
+          ]
+        }
       ]
     }
   }
