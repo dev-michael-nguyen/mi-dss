@@ -31,9 +31,28 @@
     <noscript>
       This is your fallback content in case JavaScript fails to load.
     </noscript>
+
     <div id="app"></div>
+
     <!-- Todo: only include in production -->
     <%= htmlWebpackPlugin.options.serviceWorkerLoader %>
     <!-- built files will be auto injected -->
+
+    <!-- firebase libs -->
+    <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase-database.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyBx04BAeFPYP0NgRLYhZfeGr8x-OjyPByY",
+        authDomain: "tabi-1266.firebaseapp.com",
+        databaseURL: "https://tabi-1266.firebaseio.com",
+        projectId: "tabi-1266",
+        storageBucket: "tabi-1266.appspot.com",
+        messagingSenderId: "823485498090"
+      };
+      firebase.initializeApp(config);
+    </script>
   </body>
 </html>
