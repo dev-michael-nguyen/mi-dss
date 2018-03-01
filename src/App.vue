@@ -8,7 +8,7 @@
         <v-list-group v-model="item.active"
           v-for="item in items"
           :key="item.title"
-          :prepend-icon="item.action"
+          :prepend-icon="item.icon"
           no-action>
           <v-list-tile slot="activator">
             <v-list-tile-content>
@@ -17,13 +17,13 @@
           </v-list-tile>
           <v-list-tile v-for="subItem in item.items"
             :key="subItem.title"
-            :value="activeTile == subItem.title"
-            @click="activeTile = subItem.title">
+            :value="activePath == subItem.path"
+            @click="onItemClicked(subItem)">
             <v-list-tile-content>
               <v-list-tile-title>{{ subItem.title }}</v-list-tile-title>
             </v-list-tile-content>
             <v-list-tile-action>
-              <v-icon>{{ subItem.action }}</v-icon>
+              <v-icon>{{ subItem.icon }}</v-icon>
             </v-list-tile-action>
           </v-list-tile>
         </v-list-group>
@@ -47,7 +47,7 @@
     <v-content>
       <router-view/>
     </v-content>
-    <v-navigation-drawer app v-model="showRightDrawer"
+    <!-- <v-navigation-drawer app v-model="showRightDrawer"
       temporary fixed
       :right="right">
       <v-list>
@@ -62,7 +62,7 @@
     <v-footer app
       fixed>
       <span>&copy; 2017</span>
-    </v-footer>
+    </v-footer> -->
   </v-app>
 </template>
 
@@ -71,30 +71,38 @@ export default {
   name: 'App',
   data () {
     return {
+      // app layout configs
       title: 'DSS',
       showDrawer: true,
       clipped: true,
       miniVariant: false,
-      showRightDrawer: false,
-      right: true,
-      activeTile: 0,
+      // showRightDrawer: false,
+      // right: true,
+      activePath: '/profile-list',
+      // left nav tree
       items: [
         {
-          action: 'people',
+          icon: 'people',
           title: 'Profiles',
+          active: true,
           items: [
-            { title: 'Search' }
+            { title: 'List', path: '/profile-list' }
           ]
         },
         {
-          action: 'list',
+          icon: 'list',
           title: 'My List',
           items: [
-            { title: 'Module A' },
-            { title: 'Module B' }
+            { title: 'Profiles', path: '/profile-my-list' }
           ]
         }
       ]
+    }
+  },
+  methods: {
+    onItemClicked: function (item) {
+      this.activePath = item.path
+      this.$router.push({ path: item.path })
     }
   }
 }
