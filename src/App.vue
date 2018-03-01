@@ -22,9 +22,6 @@
             <v-list-tile-content>
               <v-list-tile-title>{{ subItem.title }}</v-list-tile-title>
             </v-list-tile-content>
-            <v-list-tile-action>
-              <v-icon>{{ subItem.icon }}</v-icon>
-            </v-list-tile-action>
           </v-list-tile>
         </v-list-group>
       </v-list>
@@ -32,9 +29,9 @@
     <v-toolbar app
       :clipped-left="clipped">
       <v-toolbar-side-icon @click.stop="showDrawer = !showDrawer"></v-toolbar-side-icon>
-      <v-btn icon @click.stop="miniVariant = !miniVariant">
+      <!-- <v-btn icon @click.stop="miniVariant = !miniVariant">
         <v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
-      </v-btn>
+      </v-btn> -->
       <!-- <v-btn icon @click.stop="clipped = !clipped">
         <v-icon>web</v-icon>
       </v-btn> -->
