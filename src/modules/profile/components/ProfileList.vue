@@ -3,9 +3,7 @@
     <v-toolbar color="primary">
       <v-toolbar-title class="white--text">Profile List</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn>
-        Create New
-      </v-btn>
+      <v-btn @click="onClickedCreateNew()">Create New</v-btn>
     </v-toolbar>
     <v-card>
       <v-data-table
@@ -110,6 +108,9 @@ export default {
           this.profiles = data.items
           this.totalItems = data.total
         })
+    },
+    onClickedCreateNew () {
+      this.$router.push({ name: 'ProfileCreate' })
     }
   }
 }

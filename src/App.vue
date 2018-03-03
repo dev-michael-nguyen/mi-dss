@@ -5,22 +5,22 @@
       :clipped="clipped"
       :mini-variant="miniVariant">
       <v-list>
-        <v-list-group v-model="item.active"
-          v-for="item in items"
-          :key="item.title"
-          :prepend-icon="item.icon"
+        <v-list-group v-for="branch in branches"
+          :value="branch.key == activeNode.branchKey"
+          :key="branch.key"
+          :prepend-icon="branch.icon"
           no-action>
           <v-list-tile slot="activator">
             <v-list-tile-content>
-              <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+              <v-list-tile-title>{{ branch.title }}</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
-          <v-list-tile v-for="subItem in item.items"
-            :key="subItem.title"
-            :value="activePath == subItem.path"
-            @click="onItemClicked(subItem)">
+          <v-list-tile v-for="node in branch.nodes"
+            :key="node.title"
+            :value="node.route.name == activeNode.route.name"
+            @click="onClickedNode(node)">
             <v-list-tile-content>
-              <v-list-tile-title>{{ subItem.title }}</v-list-tile-title>
+              <v-list-tile-title>{{ node.title }}</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
         </v-list-group>
@@ -64,6 +64,8 @@
 </template>
 
 <script>
+import { branches } from './router'
+
 export default {
   name: 'App',
   data () {
@@ -75,31 +77,35 @@ export default {
       miniVariant: false,
       // showRightDrawer: false,
       // right: true,
-      activePath: '/profile-list',
+      activeNode: this.$route.meta.leftNode,
       // left nav tree
-      items: [
-        {
-          icon: 'people',
-          title: 'Profiles',
-          active: true,
-          items: [
-            { title: 'List', path: '/profile-list' }
-          ]
-        },
-        {
-          icon: 'list',
-          title: 'My List',
-          items: [
-            { title: 'Profiles', path: '/profile-my-list' }
-          ]
-        }
-      ]
+      branches: branches
+    }
+  },
+  mounted () {
+    this.updateActiveNode()
+  },
+  watch: {
+    $route: {
+      handler (val) {
+        this.updateActiveNode()
+      }
     }
   },
   methods: {
-    onItemClicked: function (item) {
-      this.activePath = item.path
-      this.$router.push({ path: item.path })
+    updateActiveNode () {
+      const activeNode = this.findActiveNode()
+      if (activeNode) {
+        this.activeNode = activeNode
+      }
+    },
+    findActiveNode () {
+      const targetNode = this.$route.meta.leftNode
+      return this.branches[targetNode.branchKey].nodes[targetNode.route.name]
+    },
+    onClickedNode (node) {
+      this.activeNode = node
+      this.$router.push({ name: node.route.name })
     }
   }
 }
