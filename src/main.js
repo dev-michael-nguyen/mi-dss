@@ -7,7 +7,7 @@ import { router } from './router'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 
-import registerComponents from './components'
+import ComponentsFactory from './components'
 
 Vue.config.productionTip = false
 
@@ -21,7 +21,7 @@ Vue.use(Vuetify, { theme: {
   success: '#1B5E20'
 }})
 
-registerComponents()
+ComponentsFactory()
 
 /* eslint-disable no-new */
 new Vue({

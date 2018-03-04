@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import ProfileCreate from '@/modules/profile/components/ProfileCreate'
-import ProfileList from '@/modules/profile/components/ProfileList'
-import ProfileMyList from '@/modules/profile/components/ProfileMyList'
+
+import ProfileComponents from '@/modules/profile/components'
 
 Vue.use(Router)
 
@@ -29,7 +28,7 @@ const branches = {
 
 const routes = [
   {
-    component: ProfileList,
+    component: ProfileComponents.ProfileList,
     path: '/',
     name: 'Home',
     meta: {
@@ -37,7 +36,7 @@ const routes = [
     }
   },
   {
-    component: ProfileCreate,
+    component: ProfileComponents.ProfileCreate,
     path: branches.Profile.nodes.ProfileCreate.route.path,
     name: branches.Profile.nodes.ProfileCreate.route.name,
     meta: {
@@ -45,7 +44,7 @@ const routes = [
     }
   },
   {
-    component: ProfileList,
+    component: ProfileComponents.ProfileList,
     path: branches.Profile.nodes.ProfileList.route.path,
     name: branches.Profile.nodes.ProfileList.route.name,
     meta: {
@@ -53,7 +52,7 @@ const routes = [
     }
   },
   {
-    component: ProfileMyList,
+    component: ProfileComponents.ProfileMyList,
     path: branches.MyList.nodes.ProfileMyList.route.path,
     name: branches.MyList.nodes.ProfileMyList.route.name,
     meta: {
