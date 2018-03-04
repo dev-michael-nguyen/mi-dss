@@ -1,18 +1,41 @@
 <template>
-  <v-container fluid>
-    <v-slide-y-transition mode="out-in">
-      <v-layout column align-center>
-        <img src="@/assets/logo.png" alt="Vuetify.js" class="mb-5">
-        <blockquote>
-          &#8220;Profile Create&#8221;
-        </blockquote>
-      </v-layout>
-    </v-slide-y-transition>
-  </v-container>
+  <div>
+    <v-toolbar color="primary">
+      <v-toolbar-title class="white--text">Create Profile</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn @click="onClickedSave()">Save</v-btn>
+    </v-toolbar>
+    <v-card>
+      <v-container>
+        <v-form ref="form">
+          <fieldset class=fieldset-one>
+            <legend><h1>Personal Information</h1></legend>
+            <mi-text-editor label="First Name" v-model="firstName" required></mi-text-editor>
+            <mi-text-editor label="Last Name" v-model="lastName" required></mi-text-editor>
+            <mi-date-editor label="Birth Date" v-model="birthDate" required></mi-date-editor>
+          </fieldset>
+        </v-form>
+      </v-container>
+    </v-card>
+  </div>
 </template>
 
 <script>
 export default {
+  data () {
+    return {
+      firstName: '',
+      lastName: '',
+      birthDate: null
+    }
+  },
+  methods: {
+    onClickedSave () {
+      if (this.$refs.form.validate()) {
+        console.log('save')
+      }
+    }
+  }
 }
 </script>
 
