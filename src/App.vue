@@ -110,3 +110,18 @@ export default {
   }
 }
 </script>
+
+<!-- App global css go here -->
+<style>
+.fieldset-one {
+  border-width: 2px 0 0 0;
+  border-color: #2196f3
+}
+.fieldset-two {
+  border-width: 0 0 0 0;
+  border-color: #2196f3
+}
+fieldset > legend {
+  color: #2196f3 !important;
+}
+</style>

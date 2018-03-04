@@ -1,9 +1,9 @@
 <template>
-  <v-card>
+  <div>
     <v-toolbar color="primary">
       <v-toolbar-title class="white--text">Profile List</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn @click="onClickedCreateNew()">Create New</v-btn>
+      <v-btn @click="onClickedCreate()">Create</v-btn>
     </v-toolbar>
     <v-card>
       <v-data-table
@@ -20,7 +20,7 @@
         </template>
       </v-data-table>
     </v-card>
-  </v-card>
+  </div>
 </template>
 
 <script>
@@ -109,7 +109,7 @@ export default {
           this.totalItems = data.total
         })
     },
-    onClickedCreateNew () {
+    onClickedCreate () {
       this.$router.push({ name: 'ProfileCreate' })
     }
   }

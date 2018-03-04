@@ -14,7 +14,7 @@ const branches = {
     title: 'Profiles',
     nodes: {
       ProfileList: { branchKey: 'Profile', title: 'List', route: { path: '/profile-list', name: 'ProfileList' } },
-      ProfileCreate: { branchKey: 'Profile', title: 'Create New', route: { path: '/profile-create', name: 'ProfileCreate' } }
+      ProfileCreate: { branchKey: 'Profile', title: 'Create', route: { path: '/profile-create', name: 'ProfileCreate' } }
     }
   },
   MyList: {

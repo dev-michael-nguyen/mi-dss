@@ -3,8 +3,13 @@
 import Vue from 'vue'
 import App from './App'
 import { router } from './router'
+
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
+
+import registerComponents from './components'
+
+Vue.config.productionTip = false
 
 Vue.use(Vuetify, { theme: {
   primary: '#2196F3',
@@ -16,7 +21,7 @@ Vue.use(Vuetify, { theme: {
   success: '#1B5E20'
 }})
 
-Vue.config.productionTip = false
+registerComponents()
 
 /* eslint-disable no-new */
 new Vue({
