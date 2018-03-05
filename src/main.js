@@ -9,6 +9,30 @@ import 'vuetify/dist/vuetify.min.css'
 
 import ComponentsFactory from './components'
 
+// Initialize Firebase
+if (process.env.NODE_ENV === 'development') {
+  const config = {
+    apiKey: 'AIzaSyAuOHYG75ve4NFVcP1B_kHdDnjjvL4EfHw',
+    authDomain: 'mi-dss-dev.firebaseapp.com',
+    databaseURL: 'https://mi-dss-dev.firebaseio.com',
+    projectId: 'mi-dss-dev',
+    storageBucket: 'mi-dss-dev.appspot.com',
+    messagingSenderId: '1090115059506'
+  }
+  window.firebase.initializeApp(config)
+} else if (process.env.NODE_ENV === 'production') {
+  // TBI: setup another project for production
+  const config = {
+    apiKey: 'AIzaSyAuOHYG75ve4NFVcP1B_kHdDnjjvL4EfHw',
+    authDomain: 'mi-dss-dev.firebaseapp.com',
+    databaseURL: 'https://mi-dss-dev.firebaseio.com',
+    projectId: 'mi-dss-dev',
+    storageBucket: 'mi-dss-dev.appspot.com',
+    messagingSenderId: '1090115059506'
+  }
+  window.firebase.initializeApp(config)
+}
+
 Vue.config.productionTip = false
 
 Vue.use(Vuetify, { theme: {
