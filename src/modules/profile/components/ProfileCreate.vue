@@ -10,9 +10,9 @@
         <v-form ref="form">
           <fieldset class=fieldset-one>
             <legend><h1>Personal Information</h1></legend>
-            <mi-text-editor label="First Name" v-model="firstName" required></mi-text-editor>
-            <mi-text-editor label="Last Name" v-model="lastName" required></mi-text-editor>
-            <mi-date-editor label="Birth Date" v-model="birthDate" required></mi-date-editor>
+            <mi-text-editor label="First Name" v-model="model.personName.firstName" required></mi-text-editor>
+            <mi-text-editor label="Last Name" v-model="model.personName.lastName" required></mi-text-editor>
+            <mi-date-editor label="Birth Date" v-model="model.birthDate" required></mi-date-editor>
           </fieldset>
         </v-form>
       </v-container>
@@ -24,9 +24,13 @@
 export default {
   data () {
     return {
-      firstName: '',
-      lastName: '',
-      birthDate: null
+      model: {
+        personName: {
+          firstName: '',
+          lastName: ''
+        },
+        birthDate: null
+      }
     }
   },
   methods: {
