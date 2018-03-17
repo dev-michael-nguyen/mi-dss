@@ -1,3 +1,11 @@
+// Using Firebase Admin SDK to access Firebase Realtime Database.
+// NOTE: It will be initialized with default admin privilege and bypass database rule.
+//       Config with service account as needed: https://firebase.google.com/docs/admin/setup?authuser=0
+const functions = require('firebase-functions')
+const admin = require('firebase-admin')
+admin.initializeApp(functions.config().firebase)
+const db = admin.database()
+
 // Res status cheatsheet
 const resStatus = {
   OK: 200,
@@ -9,12 +17,7 @@ const resStatus = {
 }
 
 // Use on route that need to be authenticated
-const admin = require('firebase-admin')
 const authenticate = (req, res, next) => {
-  // Set CORS our POST response so it worked on codepen
-  // res.header('Access-Control-Allow-Origin', '*')
-  // res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
-
   if (!req.headers.authorization || !req.headers.authorization.startsWith('Bearer ')) {
     return res.status(resStatus.UNAUTHORIZED).json({ error: `${resStatus.UNAUTHORIZED}: No authorization header.` })
   }
@@ -32,6 +35,7 @@ const authenticate = (req, res, next) => {
 }
 
 module.exports = {
+  db,
   resStatus,
   authenticate
 }

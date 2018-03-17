@@ -2,8 +2,19 @@
 const express = require('express')
 const app = express()
 
-const profiles = require('./modules/profile/handlers')
-app.use(profiles)
+// Enable CORS on all requests
+// const cors = require('cors')({origin: true})
+// app.use(cors)
+
+// Set CORS our POST response so it worked on codepen.io
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', '*')
+//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+//   return next()
+// })
+
+const profileRouter = require('./modules/profile/routers')
+app.use(profileRouter)
 
 // Set routes under 'app' function base url which is /app
 // Set up Firebase Realtime Database base url to /app for easy integration
