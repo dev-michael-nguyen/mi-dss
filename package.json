@@ -5,13 +5,15 @@
   "author": "Michael Nguyen <Michael.Nguyen@feisystems.com>",
   "private": true,
   "scripts": {
-    "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
+    "dev": "node build/dev-server.js",
     "build": "node build/build.js",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
-    "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
+    "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
+    "local-dev-api": "firebase serve --only functions",
+    "deploy-dev-api": "firebase use dev && firebase deploy --only functions"
   },
   "dependencies": {
     "vuetify": "^1.0.0",
