@@ -34,7 +34,7 @@ export default {
       loading: true,
       pagination: {},
       headers: [
-        { text: 'Key', value: 'key', align: 'left', sortable: false },
+        { text: 'Key', value: 'key', align: 'left' },
         { text: 'First Name', value: 'personName.firstName', align: 'left' },
         { text: 'Last Name', value: 'personName.lastName', align: 'left' }
       ]
