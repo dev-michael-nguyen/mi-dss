@@ -34,32 +34,23 @@ const routes = [
     meta: {
       leftNode: branches.Profile.nodes.ProfileList
     }
-  },
-  {
-    component: ProfileComponents.ProfileCreate,
-    path: branches.Profile.nodes.ProfileCreate.route.path,
-    name: branches.Profile.nodes.ProfileCreate.route.name,
-    meta: {
-      leftNode: branches.Profile.nodes.ProfileCreate
-    }
-  },
-  {
-    component: ProfileComponents.ProfileList,
-    path: branches.Profile.nodes.ProfileList.route.path,
-    name: branches.Profile.nodes.ProfileList.route.name,
-    meta: {
-      leftNode: branches.Profile.nodes.ProfileList
-    }
-  },
-  {
-    component: ProfileComponents.ProfileMyList,
-    path: branches.MyList.nodes.ProfileMyList.route.path,
-    name: branches.MyList.nodes.ProfileMyList.route.name,
-    meta: {
-      leftNode: branches.MyList.nodes.ProfileMyList
-    }
   }
 ]
+
+Object.keys(branches).forEach(bKey => {
+  var branch = branches[bKey]
+  Object.keys(branch.nodes).forEach(nKey => {
+    var node = branch.nodes[nKey]
+    routes.push({
+      component: ProfileComponents[node.route.name],
+      path: node.route.path,
+      name: node.route.name,
+      meta: {
+        leftNode: node
+      }
+    })
+  })
+})
 
 const router = new Router({routes})
 

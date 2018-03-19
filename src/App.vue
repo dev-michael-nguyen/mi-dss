@@ -4,27 +4,7 @@
       persistent enable-resize-watcher fixed
       :clipped="clipped"
       :mini-variant="miniVariant">
-      <v-list>
-        <v-list-group v-for="branch in branches"
-          :value="branch.key == activeNode.branchKey"
-          :key="branch.key"
-          :prepend-icon="branch.icon"
-          no-action>
-          <v-list-tile slot="activator">
-            <v-list-tile-content>
-              <v-list-tile-title>{{ branch.title }}</v-list-tile-title>
-            </v-list-tile-content>
-          </v-list-tile>
-          <v-list-tile v-for="node in branch.nodes"
-            :key="node.title"
-            :value="node.route.name == activeNode.route.name"
-            @click="onClickedNode(node)">
-            <v-list-tile-content>
-              <v-list-tile-title>{{ node.title }}</v-list-tile-title>
-            </v-list-tile-content>
-          </v-list-tile>
-        </v-list-group>
-      </v-list>
+      <mi-app-left-nav></mi-app-left-nav>
     </v-navigation-drawer>
     <v-toolbar app
       :clipped-left="clipped">
@@ -64,8 +44,6 @@
 </template>
 
 <script>
-import { branches } from './router'
-
 export default {
   name: 'App',
   data () {
@@ -74,38 +52,9 @@ export default {
       title: 'DSS',
       showDrawer: true,
       clipped: true,
-      miniVariant: false,
+      miniVariant: false
       // showRightDrawer: false,
       // right: true,
-      activeNode: this.$route.meta.leftNode,
-      // left nav tree
-      branches: branches
-    }
-  },
-  mounted () {
-    this.updateActiveNode()
-  },
-  watch: {
-    $route: {
-      handler (val) {
-        this.updateActiveNode()
-      }
-    }
-  },
-  methods: {
-    updateActiveNode () {
-      const activeNode = this.findActiveNode()
-      if (activeNode) {
-        this.activeNode = activeNode
-      }
-    },
-    findActiveNode () {
-      const targetNode = this.$route.meta.leftNode
-      return this.branches[targetNode.branchKey].nodes[targetNode.route.name]
-    },
-    onClickedNode (node) {
-      this.activeNode = node
-      this.$router.push({ name: node.route.name })
     }
   }
 }
