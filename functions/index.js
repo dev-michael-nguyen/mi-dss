@@ -13,7 +13,7 @@ const app = express()
 //   return next()
 // })
 
-const profileRouter = require('./modules/profile/routers')
+const profileRouter = require('./modules/profile/router')
 app.use(profileRouter)
 
 // Set routes under 'app' function base url which is /app
