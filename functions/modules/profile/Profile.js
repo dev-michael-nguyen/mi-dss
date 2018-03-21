@@ -5,6 +5,7 @@ class Profile extends Entity {
   constructor (id, data) {
     super(id)
     this.personName = new PersonName(data.personName)
+    this.birthDate = data.birthDate ? data.birthDate : ''
   }
 }
 

@@ -1,5 +1,5 @@
 const admin = require('./admin')
-const resStatus = require('./resStatus')
+const resStatus = require('./res-status')
 
 // Use on route that need to be authenticated
 const authenticate = (req, res, next) => {
