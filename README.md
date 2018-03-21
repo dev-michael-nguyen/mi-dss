@@ -2,6 +2,17 @@
 
 > A Vue.js project
 
+## Project Structure
+``` bash
+root
+| # server implementation based on firebase functions
+|-functions
+| # client implementation based on vue-pwa-boilerplate
+|-src
+```
+- [firebase functions](https://firebase.google.com/docs/functions/)
+- [vue-pwa-boilerplate](https://github.com/vuejs-templates/pwa/)
+
 ## Client Build Setup
 
 ``` bash
@@ -27,7 +38,7 @@ npm run e2e
 npm test
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+- For detailed explanation on how things work, checkout [docs for webpack](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader/).
 
 ## Server Build Setup
 

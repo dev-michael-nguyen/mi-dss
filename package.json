@@ -2,7 +2,7 @@
   "name": "mi-dss",
   "version": "1.0.0",
   "description": "A Vue.js project",
-  "author": "Michael Nguyen <Michael.Nguyen@feisystems.com>",
+  "author": "Michael Nguyen <dev.michael.nguyen@gmail.com>",
   "private": true,
   "scripts": {
     "start": "node build/dev-server.js",
