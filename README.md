@@ -5,34 +5,34 @@
 ## Project Structure
 ``` bash
 root
-| # server implementation based on firebase functions
+| # api implementation based on firebase functions
 |-functions
-| # client implementation based on vue-pwa-boilerplate
+| # web implementation based on vue-pwa-boilerplate
 |-src
 ```
 - [firebase functions](https://firebase.google.com/docs/functions/)
 - [vue-pwa-boilerplate](https://github.com/vuejs-templates/pwa/)
 
-## Client Build Setup
+## Web Build Setup
 
 ``` bash
 # install dependencies
 npm install
 
 # serve with hot reload at localhost:8080
-npm run dev
+npm start
 
 # build for production with minification
-npm run build
+npm run web:build
 
 # build for production and view the bundle analyzer report
-npm run build --report
+npm run web:build --report
 
 # run unit tests
-npm run unit
+npm run web:test-unit
 
 # run e2e tests
-npm run e2e
+npm run web:test-e2e
 
 # run all tests
 npm test
@@ -40,7 +40,7 @@ npm test
 
 - For detailed explanation on how things work, checkout [docs for webpack](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader/).
 
-## Server Build Setup
+## API Build Setup
 
 ``` bash
 # Install firebase-tools
@@ -52,8 +52,11 @@ firebase login
 # Create a new project alias and set as active project for this working directory
 firebase use --add
 
-# Start local server
-firebase serve --only functions
+# Start local api shell for testing
+npm run api:shell
 
-# Deploy to Firebase
-firebase deploy --only functions
+# Start local api server
+npm run api:local
+
+# Deploy to Firebase to dev project define in .firebaserc
+npm run api:deploy:dev
