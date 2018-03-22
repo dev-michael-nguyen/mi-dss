@@ -7,13 +7,13 @@
 root
 | # api implementation based on firebase functions
 |-functions
-| # web implementation based on vue-pwa-boilerplate
+| # app implementation based on vue-pwa-boilerplate
 |-src
 ```
 - [firebase functions](https://firebase.google.com/docs/functions/)
 - [vue-pwa-boilerplate](https://github.com/vuejs-templates/pwa/)
 
-## Web Build Setup
+## App Build Setup
 
 ``` bash
 # install dependencies
@@ -23,16 +23,16 @@ npm install
 npm start
 
 # build for production with minification
-npm run web:build
+npm run app:build
 
 # build for production and view the bundle analyzer report
-npm run web:build --report
+npm run app:build --report
 
 # run unit tests
-npm run web:test-unit
+npm run app:test-unit
 
 # run e2e tests
-npm run web:test-e2e
+npm run app:test-e2e
 
 # run all tests
 npm test
