@@ -5,7 +5,7 @@ export default {
     readonly: { type: Boolean },
     required: { type: Boolean }
   },
-  data: function () {
+  data () {
     return {
       // WARNING: Vue doesn't allow direct mutation on prop if it is not an object since it is anti-pattern.
       //          This mean we shouldn't bind v-model="value" and instead use v-model="valueModel".
@@ -23,12 +23,12 @@ export default {
   },
   watch: {
     // Allow child to react if value was changed in parent since we are keeping a local copy
-    value: function (val) {
+    value (val) {
       this.valueModel = val
     },
     // NOTE: Bypass VueJs default behavior by allow change in value prop from children
     //       to propogate to parent even for non-object props. See valueModel above.
-    valueModel: function (val) {
+    valueModel (val) {
       this.$emit('input', this.valueModel)
     }
   }

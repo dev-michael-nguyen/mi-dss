@@ -2,17 +2,17 @@
 const express = require('express')
 const app = express()
 
-// Enable CORS on all requests
-// const cors = require('cors')({origin: true})
-// app.use(cors)
+// Enable CORS on all requests and responses
+// NOTE: This will allow our web application to communicate with our API if they are not hosted on the same domain
+const cors = require('cors')({origin: true})
+app.use(cors)
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+  return next()
+})
 
-// Set CORS our POST response so it worked on codepen.io
-// app.use((req, res, next) => {
-//   res.header('Access-Control-Allow-Origin', '*')
-//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
-//   return next()
-// })
-
+// Setting up route for our modules
 const profileRouter = require('./modules/profile/router')
 app.use(profileRouter)
 

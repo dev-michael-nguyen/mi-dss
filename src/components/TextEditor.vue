@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import iEditor from '@/mixins/iEditor'
+import iEditor from './mixins/iEditor'
 export default {
   mixins: [iEditor]
 }

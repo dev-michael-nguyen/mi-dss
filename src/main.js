@@ -1,13 +1,13 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import App from './App'
-import { router } from './router'
-
+import VueResource from 'vue-resource'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 
 import ComponentsFactory from './components'
+import App from './App'
+import { router } from './router'
 
 // Initialize Firebase
 if (process.env.NODE_ENV === 'development') {
@@ -33,8 +33,15 @@ if (process.env.NODE_ENV === 'development') {
   window.firebase.initializeApp(config)
 }
 
+// VueJs config
 Vue.config.productionTip = false
 
+// vue-resource config
+Vue.use(VueResource)
+Vue.http.options.root = 'https://us-central1-mi-dss-dev.cloudfunctions.net/app'
+Vue.http.options.emulateJSON = true
+
+// vuetify config
 Vue.use(Vuetify, { theme: {
   primary: '#2196F3',
   secondary: '#FAFAFA',
