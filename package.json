@@ -8,6 +8,7 @@
     "start": "npm run app:local",
     "app:local": "node build/dev-server.js",
     "app:build": "node build/build.js",
+    "app:deploy:dev": "firebase use dev && firebase deploy --only hosting",
     "test": "npm run app:test",
     "app:test": "npm run app:test-unit && npm run app:test-e2e",
     "app:test-unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
