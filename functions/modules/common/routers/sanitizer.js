@@ -4,7 +4,6 @@ const sanitizeHtml = require('sanitize-html')
 function clean (obj, options) {
   Object.keys(obj).forEach(key => {
     var value = obj[key]
-    console.log(value)
     if (typeof value === 'string') {
       obj[key] = sanitizeHtml(value, options)
     }

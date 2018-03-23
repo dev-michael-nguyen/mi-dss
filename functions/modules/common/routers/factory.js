@@ -7,7 +7,7 @@ const sanitizer = require('./sanitizer')
 function create (EntityFactory, routes) {
   const router = express.Router()
 
-  const { postRoute, getRoute } = routes
+  const { postRoute, getRoute, putRoute } = routes
 
   router.post(
     postRoute,
@@ -50,6 +50,31 @@ function create (EntityFactory, routes) {
             })
             return res.status(resStatus.OK).json(entities)
           }
+        })
+        .catch((error) => {
+          console.error(error)
+          return res.status(resStatus.SERVER_ERROR).json({ error: `${error.code}: ${error.message}` })
+        })
+    }
+  )
+
+  router.put(
+    putRoute,
+    (req, res) => {
+      if (!req.body) {
+        return res.status(resStatus.BAD_REQUEST).json({ error: `${resStatus.BAD_REQUEST}: No Data` })
+      }
+
+      const entity = new EntityFactory(null, sanitizer.cleanStrict(req.body))
+
+      return db.ref(req.fullPath)
+        .update(entity)
+        .then(() => {
+          return db.ref(req.fullPath).once('value')
+        })
+        .then((snapshot) => {
+          const entity = new EntityFactory(snapshot.key, snapshot.val())
+          return res.status(resStatus.OK).json(entity)
         })
         .catch((error) => {
           console.error(error)
