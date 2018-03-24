@@ -12,7 +12,7 @@
             <legend><h1>Personal Information</h1></legend>
             <mi-text-editor label="First Name" v-model="model.personName.firstName" required></mi-text-editor>
             <mi-text-editor label="Last Name" v-model="model.personName.lastName" required></mi-text-editor>
-            <mi-date-editor label="Birth Date" v-model="model.birthDate" required></mi-date-editor>
+            <mi-birth-date-editor label="Birth Date" v-model="model.birthDate" required></mi-birth-date-editor>
           </fieldset>
         </v-form>
       </v-container>
