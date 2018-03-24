@@ -1,8 +1,8 @@
 <template>
   <v-flex xs12 sm6>
-    <v-text-field :label="label" v-model="valueModel"
-      :readonly="readonly"
-      :required="required" :rules="rules">
+    <v-text-field
+      :label="label" v-model="valueModel"
+      :readonly="readonly" :required="required" :rules="rules">
     </v-text-field>
   </v-flex>
 </template>

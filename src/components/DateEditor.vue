@@ -4,11 +4,15 @@
       offset-y transition="scale-transition"
       full-width min-width="290px" nudge-right="40"
       :return-value="valueModel">
-      <v-text-field :label="label" v-model="formattedDate" readonly
-        :required="required" :rules="rules"
-        slot="activator" prepend-icon="event">
+      <v-text-field
+        slot="activator" prepend-icon="event"
+        :label="label" v-model="formattedDate"
+        readonly :required="required" :rules="rules">
       </v-text-field>
-      <v-date-picker v-model="valueModel" no-title scrollable></v-date-picker>
+      <v-date-picker
+        no-title scrollable
+        v-model="valueModel">
+      </v-date-picker>
     </v-menu>
   </v-flex>
 </template>
