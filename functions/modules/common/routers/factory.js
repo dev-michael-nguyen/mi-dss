@@ -14,10 +14,10 @@ function fixPostData (EntityFactory, postData) {
 function create (EntityFactory, routes) {
   const router = express.Router()
 
-  const { postRoute, getRoute, putRoute } = routes
+  const { postRoutes, putRoutes, getRoutes } = routes
 
   router.post(
-    postRoute,
+    postRoutes,
     (req, res) => {
       if (!req.body) {
         return res.status(resStatus.BAD_REQUEST).json({ error: `${resStatus.BAD_REQUEST}: No Data` })
@@ -47,7 +47,7 @@ function create (EntityFactory, routes) {
   )
 
   router.put(
-    putRoute,
+    putRoutes,
     (req, res) => {
       if (!req.body) {
         return res.status(resStatus.BAD_REQUEST).json({ error: `${resStatus.BAD_REQUEST}: No Data` })
@@ -76,8 +76,14 @@ function create (EntityFactory, routes) {
   )
 
   router.get(
-    getRoute,
+    getRoutes,
     (req, res) => {
+      // If query for an empty entity, return an empty entity model
+      if (req.query.getEmptyEntity) {
+        const entity = new EntityFactory()
+        return res.status(resStatus.OK).json(entity)
+      }
+
       return db.ref(req.fullPath)
         .once('value')
         .then((snapshot) => {
