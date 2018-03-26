@@ -17,6 +17,7 @@
           <td>{{ props.item.id }}</td>
           <td>{{ props.item.personName.firstName }}</td>
           <td>{{ props.item.personName.lastName }}</td>
+          <td>{{ props.item.birthDate | date }}</td>
         </template>
       </v-data-table>
     </v-card>
@@ -33,7 +34,8 @@ export default {
       headers: [
         { text: 'Id', value: 'id', align: 'left' },
         { text: 'First Name', value: 'personName.firstName', align: 'left' },
-        { text: 'Last Name', value: 'personName.lastName', align: 'left' }
+        { text: 'Last Name', value: 'personName.lastName', align: 'left' },
+        { text: 'Birth Date', value: 'birthDate', align: 'left' }
       ]
     }
   },

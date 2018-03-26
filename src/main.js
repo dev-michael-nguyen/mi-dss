@@ -52,6 +52,13 @@ Vue.use(Vuetify, { theme: {
   success: '#1B5E20'
 }})
 
+// Filters
+Vue.filter('date', function (val) {
+  var d = val.split('-')
+  return `${d[1]}/${d[2]}/${d[0]}`
+})
+
+// Components
 ComponentsFactory()
 
 /* eslint-disable no-new */

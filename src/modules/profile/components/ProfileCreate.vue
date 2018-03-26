@@ -7,7 +7,7 @@
     </v-toolbar>
     <v-card>
       <v-container>
-        <v-form ref="form">
+        <v-form ref="form" v-if="model">
           <fieldset class=fieldset-one>
             <legend><h1>Personal Information</h1></legend>
             <mi-text-editor label="First Name" v-model="model.personName.firstName" required></mi-text-editor>
@@ -24,19 +24,22 @@
 export default {
   data () {
     return {
-      model: {
-        personName: {
-          firstName: '',
-          lastName: ''
-        },
-        birthDate: null
-      }
+      model: null
     }
+  },
+  beforeCreate (to, from, next) {
+    this.$http.get('profiles/?getEmptyEntity=true')
+      .then((res) => {
+        this.model = res.data
+      })
   },
   methods: {
     onClickedSave () {
       if (this.$refs.form.validate()) {
-        console.log('save')
+        this.$http.post('profiles', this.model)
+          .then((res) => {
+            this.$router.push({ name: 'ProfileList' })
+          })
       }
     }
   }
