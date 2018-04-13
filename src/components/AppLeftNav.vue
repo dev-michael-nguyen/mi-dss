@@ -1,8 +1,8 @@
 <template>
   <v-list>
     <v-list-group v-for="branch in branches"
-      :value="branch.key == activeNode.branchKey"
       :key="branch.key"
+      :value="branch.key == activeNode.branchKey"
       :prepend-icon="branch.icon"
       no-action>
       <v-list-tile slot="activator">
@@ -11,6 +11,7 @@
         </v-list-tile-content>
       </v-list-tile>
       <v-list-tile v-for="node in branch.nodes"
+        v-if="!node.hideUntilActive || node.route.name === activeNode.route.name"
         :key="node.title"
         :value="node.route.name == activeNode.route.name"
         @click="onClickedNode(node)">
