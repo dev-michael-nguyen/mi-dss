@@ -1,5 +1,5 @@
-const Entity = require('../common/factories/Entity')
-const PersonName = require('../common/factories/PersonName')
+const Entity = require('../common/classes/Entity')
+const PersonName = require('../common/classes/PersonName')
 
 class Profile extends Entity {
   constructor (id, data) {
