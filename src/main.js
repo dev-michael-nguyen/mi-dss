@@ -9,36 +9,17 @@ import ComponentsFactory from './components'
 import App from './App'
 import { router } from './router'
 
-// Initialize Firebase
-if (process.env.NODE_ENV === 'development') {
-  const config = {
-    apiKey: 'AIzaSyAuOHYG75ve4NFVcP1B_kHdDnjjvL4EfHw',
-    authDomain: 'mi-dss-dev.firebaseapp.com',
-    databaseURL: 'https://mi-dss-dev.firebaseio.com',
-    projectId: 'mi-dss-dev',
-    storageBucket: 'mi-dss-dev.appspot.com',
-    messagingSenderId: '1090115059506'
-  }
-  window.firebase.initializeApp(config)
-} else if (process.env.NODE_ENV === 'production') {
-  // TBI: setup another project for production
-  const config = {
-    apiKey: 'AIzaSyAuOHYG75ve4NFVcP1B_kHdDnjjvL4EfHw',
-    authDomain: 'mi-dss-dev.firebaseapp.com',
-    databaseURL: 'https://mi-dss-dev.firebaseio.com',
-    projectId: 'mi-dss-dev',
-    storageBucket: 'mi-dss-dev.appspot.com',
-    messagingSenderId: '1090115059506'
-  }
-  window.firebase.initializeApp(config)
-}
-
 // VueJs config
 Vue.config.productionTip = false
 
 // vue-resource config
 Vue.use(VueResource)
-Vue.http.options.root = 'https://us-central1-mi-dss-dev.cloudfunctions.net/app'
+if (process.env.NODE_ENV === 'development') {
+  Vue.http.options.root = 'https://us-central1-mi-dss-dev.cloudfunctions.net/app'
+} else if (process.env.NODE_ENV === 'production') {
+  // TBI: setup another project for production
+  Vue.http.options.root = 'https://us-central1-mi-dss-dev.cloudfunctions.net/app'
+}
 Vue.http.options.emulateJSON = true
 
 // vuetify config
