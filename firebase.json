@@ -1,0 +1,14 @@
+{
+  "functions": {
+    "predeploy": [
+      "npm --prefix functions run lint"
+    ],
+    "source": "functions"
+  },
+  "hosting": {
+    "predeploy": [
+      "npm run app:build"
+    ],
+    "public": "dist"
+  }
+}

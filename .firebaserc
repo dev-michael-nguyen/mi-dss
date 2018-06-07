@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "mi-dss-dev",
+    "dev": "mi-dss-dev"
+  }
+}

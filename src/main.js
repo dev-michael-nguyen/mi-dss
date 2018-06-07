@@ -1,22 +1,65 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import App from './App'
-import router from './router'
+import VueResource from 'vue-resource'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 
+import ComponentsFactory from './components'
+import App from './App'
+import { router } from './router'
+
+// Initialize Firebase
+if (process.env.NODE_ENV === 'development') {
+  const config = {
+    apiKey: 'AIzaSyAuOHYG75ve4NFVcP1B_kHdDnjjvL4EfHw',
+    authDomain: 'mi-dss-dev.firebaseapp.com',
+    databaseURL: 'https://mi-dss-dev.firebaseio.com',
+    projectId: 'mi-dss-dev',
+    storageBucket: 'mi-dss-dev.appspot.com',
+    messagingSenderId: '1090115059506'
+  }
+  window.firebase.initializeApp(config)
+} else if (process.env.NODE_ENV === 'production') {
+  // TBI: setup another project for production
+  const config = {
+    apiKey: 'AIzaSyAuOHYG75ve4NFVcP1B_kHdDnjjvL4EfHw',
+    authDomain: 'mi-dss-dev.firebaseapp.com',
+    databaseURL: 'https://mi-dss-dev.firebaseio.com',
+    projectId: 'mi-dss-dev',
+    storageBucket: 'mi-dss-dev.appspot.com',
+    messagingSenderId: '1090115059506'
+  }
+  window.firebase.initializeApp(config)
+}
+
+// VueJs config
+Vue.config.productionTip = false
+
+// vue-resource config
+Vue.use(VueResource)
+Vue.http.options.root = 'https://us-central1-mi-dss-dev.cloudfunctions.net/app'
+Vue.http.options.emulateJSON = true
+
+// vuetify config
 Vue.use(Vuetify, { theme: {
-  primary: '#ee44aa',
-  secondary: '#424242',
-  accent: '#82B1FF',
-  error: '#FF5252',
-  info: '#2196F3',
-  success: '#4CAF50',
-  warning: '#FFC107'
+  primary: '#2196F3',
+  secondary: '#FAFAFA',
+  accent: '#2196F3',
+  error: '#BF360C',
+  warning: '#FFAB00',
+  info: '#0D47A1',
+  success: '#1B5E20'
 }})
 
-Vue.config.productionTip = false
+// Filters
+Vue.filter('date', function (val) {
+  var d = val.split('-')
+  return `${d[1]}/${d[2]}/${d[0]}`
+})
+
+// Components
+ComponentsFactory()
 
 /* eslint-disable no-new */
 new Vue({
